@@ -13,13 +13,23 @@
 
 /* Mode sombre automatique si le téléphone est réglé en sombre */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --papier: #1c1917;
     --encre: #ede6da;
     --encre-douce: #a69c90;
     --filet: #3a342f;
     --accent: #d98a8f;
+    color-scheme: dark;
   }
+}
+/* Même chose si le mode sombre est choisi à la main */
+:root[data-theme="dark"] {
+  --papier: #1c1917;
+  --encre: #ede6da;
+  --encre-douce: #a69c90;
+  --filet: #3a342f;
+  --accent: #d98a8f;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
