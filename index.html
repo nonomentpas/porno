@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galerie – Recherche</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Galerie</h1>
+    <p class="sous-titre">Trouve les profils qui te plaisent</p>
+    <nav>
+      <a href="index.html" class="actif">🔍 Recherche</a>
+      <a href="favoris.html">❤️ Favoris</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Le formulaire : « onsubmit » lance la recherche quand on clique sur le bouton ou appuie sur Entrée -->
+    <form class="recherche" onsubmit="rechercher(); return false;">
+      <input id="recherche" type="search" placeholder="Ex. : Paris, sportive, Léa…">
+      <div class="filtres">
+        <select id="cheveux">
+          <option value="">Cheveux : tous</option>
+          <option value="brune">Brune</option>
+          <option value="blonde">Blonde</option>
+          <option value="rousse">Rousse</option>
+          <option value="châtain">Châtain</option>
+        </select>
+        <select id="style">
+          <option value="">Style : tous</option>
+          <option value="élégante">Élégante</option>
+          <option value="sportive">Sportive</option>
+          <option value="bohème">Bohème</option>
+        </select>
+      </div>
+      <button type="submit" class="bouton">Rechercher</button>
+    </form>
+
+    <p id="compteur"></p>
+    <section id="resultats" class="liste"></section>
+  </main>
+
+  <script src="profils.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

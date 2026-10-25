@@ -1,0 +1,126 @@
+/* Les couleurs de l'appli : change-les ici pour tout modifier d'un coup. */
+:root {
+  --fond: #fff8f5;
+  --carte: #ffffff;
+  --rose: #e8899e;
+  --rose-clair: #fde2e4;
+  --peche: #ffe5d4;
+  --texte: #3d3438;
+  --texte-doux: #85767c;
+  --ombre: 0 4px 18px rgba(200, 120, 140, 0.15);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Nunito", system-ui, sans-serif;
+  background: var(--fond);
+  color: var(--texte);
+  line-height: 1.5;
+}
+
+/* En-tête et menu */
+header {
+  background: linear-gradient(135deg, var(--rose-clair), var(--peche));
+  padding: 24px 16px 16px;
+  text-align: center;
+}
+h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  margin: 0;
+  font-size: 2rem;
+  color: #b4566e;
+}
+.sous-titre { margin: 4px 0 14px; color: var(--texte-doux); }
+
+nav { display: flex; justify-content: center; gap: 8px; }
+nav a {
+  text-decoration: none;
+  color: var(--texte);
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+}
+nav a.actif { background: var(--rose); color: white; }
+
+main { max-width: 960px; margin: 0 auto; padding: 20px 16px 40px; }
+
+/* Zone de recherche */
+.recherche {
+  background: var(--carte);
+  padding: 16px;
+  border-radius: 20px;
+  box-shadow: var(--ombre);
+  display: grid;
+  gap: 10px;
+}
+.recherche input, .recherche select {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 2px solid var(--rose-clair);
+  border-radius: 14px;
+  background: var(--fond);
+  color: var(--texte);
+}
+.recherche input:focus, .recherche select:focus { outline: none; border-color: var(--rose); }
+.filtres { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.bouton {
+  padding: 13px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-family: inherit;
+  color: white;
+  background: var(--rose);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+}
+.bouton:active { transform: scale(0.98); }
+
+#compteur { color: var(--texte-doux); margin: 18px 4px 8px; }
+
+/* Les cartes de profils : 1 colonne sur téléphone, plus sur grand écran */
+.liste { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+
+.carte {
+  position: relative;
+  background: var(--carte);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--ombre);
+}
+.avatar { display: block; width: 100%; height: 200px; }
+.infos { padding: 14px 16px 18px; }
+.infos h3 { margin: 0; font-family: "Playfair Display", Georgia, serif; font-size: 1.3rem; }
+.infos p { margin: 6px 0; }
+.ville { color: var(--texte-doux); font-size: 0.95rem; }
+
+.tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.tags span {
+  background: var(--rose-clair);
+  color: #a04a62;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.coeur {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: var(--ombre);
+}
+
+.vide { text-align: center; color: var(--texte-doux); padding: 30px 10px; grid-column: 1 / -1; }
