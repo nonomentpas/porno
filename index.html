@@ -23,14 +23,14 @@
       <input id="recherche" type="search" placeholder="Ex. : Paris, sportive, Léa…">
       <div class="filtres">
         <select id="cheveux">
-          <option value="">Cheveux : tous</option>
+          <option value="">Cheveux</option>
           <option value="brune">Brune</option>
           <option value="blonde">Blonde</option>
           <option value="rousse">Rousse</option>
           <option value="châtain">Châtain</option>
         </select>
         <select id="style">
-          <option value="">Style : tous</option>
+          <option value="">Style</option>
           <option value="élégante">Élégante</option>
           <option value="sportive">Sportive</option>
           <option value="bohème">Bohème</option>
@@ -40,7 +40,9 @@
     </form>
 
     <p id="compteur"></p>
-    <section id="resultats" class="liste"></section>
+    <section id="resultats" class="liste">
+      <p class="vide">Tape un mot ou choisis un filtre, puis clique sur « Rechercher » 🌸<br>(sans rien taper, tu vois tous les profils)</p>
+    </section>
   </main>
 
   <script src="profils.js"></script>
