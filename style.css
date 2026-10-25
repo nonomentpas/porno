@@ -1,126 +1,175 @@
-/* Les couleurs de l'appli : change-les ici pour tout modifier d'un coup. */
+/* Les couleurs de l'appli : change-les ici pour tout modifier d'un coup.
+   Une seule couleur d'accent (--accent), le reste est papier et encre. */
 :root {
-  --fond: #fff8f5;
-  --carte: #ffffff;
-  --rose: #e8899e;
-  --rose-clair: #fde2e4;
-  --peche: #ffe5d4;
-  --texte: #3d3438;
-  --texte-doux: #85767c;
-  --ombre: 0 4px 18px rgba(200, 120, 140, 0.15);
+  --papier: #f6f2ea;
+  --encre: #1f1b18;
+  --encre-douce: #6b625a;
+  --filet: #d9d1c4;
+  --accent: #8c2f39;
+  --titre: "Playfair Display", Georgia, serif;
+  --texte: "Newsreader", Georgia, serif;
+  --etiquette: "Inter", system-ui, sans-serif;
+}
+
+/* Mode sombre automatique si le téléphone est réglé en sombre */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papier: #1c1917;
+    --encre: #ede6da;
+    --encre-douce: #a69c90;
+    --filet: #3a342f;
+    --accent: #d98a8f;
+  }
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: "Nunito", system-ui, sans-serif;
-  background: var(--fond);
-  color: var(--texte);
-  line-height: 1.5;
+  background: var(--papier);
+  color: var(--encre);
+  font-family: var(--texte);
+  font-size: 1.0625rem;
+  line-height: 1.55;
 }
 
-/* En-tête et menu */
+/* Petites étiquettes en capitales, comme les rubriques d'un journal */
+.etiquette, .rubrique, nav a, .date, label {
+  font-family: var(--etiquette);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---------- En-tête façon journal ---------- */
 header {
-  background: linear-gradient(135deg, var(--rose-clair), var(--peche));
-  padding: 24px 16px 16px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 16px 0;
   text-align: center;
 }
+.date { color: var(--encre-douce); margin: 0; }
 h1 {
-  font-family: "Playfair Display", Georgia, serif;
-  margin: 0;
-  font-size: 2rem;
-  color: #b4566e;
-}
-.sous-titre { margin: 4px 0 14px; color: var(--texte-doux); }
-
-nav { display: flex; justify-content: center; gap: 8px; }
-nav a {
-  text-decoration: none;
-  color: var(--texte);
-  padding: 8px 16px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.6);
+  font-family: var(--titre);
   font-weight: 600;
+  font-size: clamp(2.6rem, 9vw, 4.2rem);
+  line-height: 1;
+  margin: 10px 0 6px;
+  letter-spacing: -0.01em;
 }
-nav a.actif { background: var(--rose); color: white; }
+.sous-titre { font-style: italic; color: var(--encre-douce); margin: 0 0 18px; }
 
-main { max-width: 960px; margin: 0 auto; padding: 20px 16px 40px; }
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  border-top: 3px double var(--encre);
+  border-bottom: 1px solid var(--encre);
+  padding: 10px 0;
+}
+nav a { color: var(--encre); text-decoration: none; padding: 6px 0; }
+nav a.actif { color: var(--accent); border-bottom: 1px solid var(--accent); }
 
-/* Zone de recherche */
-.recherche {
-  background: var(--carte);
-  padding: 16px;
-  border-radius: 20px;
-  box-shadow: var(--ombre);
+/* ---------- Mise en page : 1 colonne sur téléphone, 3 sur ordinateur ---------- */
+main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 16px 56px;
   display: grid;
-  gap: 10px;
+  gap: 36px;
 }
+@media (min-width: 900px) {
+  main.tableau { grid-template-columns: 250px 1fr 220px; gap: 48px; }
+  main.tableau > aside { position: sticky; top: 24px; align-self: start; }
+  .colonne-centrale { border-left: 1px solid var(--filet); border-right: 1px solid var(--filet); padding: 0 48px; }
+}
+main.simple { max-width: 720px; }
+
+h2 {
+  font-family: var(--titre);
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 4px 0 16px;
+}
+
+/* ---------- Colonne de recherche ---------- */
+.recherche { display: grid; gap: 18px; }
+.recherche label { display: grid; gap: 6px; color: var(--encre-douce); }
 .recherche input, .recherche select {
   width: 100%;
-  padding: 12px 14px;
-  font-size: 1rem;
-  font-family: inherit;
-  border: 2px solid var(--rose-clair);
-  border-radius: 14px;
-  background: var(--fond);
-  color: var(--texte);
+  padding: 10px 2px;
+  font-family: var(--texte);
+  font-size: 1.05rem;
+  color: var(--encre);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--encre);
+  border-radius: 0;
+  text-transform: none;
+  letter-spacing: 0;
 }
-.recherche input:focus, .recherche select:focus { outline: none; border-color: var(--rose); }
-.filtres { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.recherche input:focus, .recherche select:focus { outline: none; border-bottom: 2px solid var(--accent); }
+.recherche select option { background: var(--papier); color: var(--encre); }
 
 .bouton {
+  margin-top: 6px;
   padding: 13px;
-  font-size: 1.05rem;
-  font-weight: 700;
-  font-family: inherit;
-  color: white;
-  background: var(--rose);
+  font-family: var(--etiquette);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--papier);
+  background: var(--encre);
   border: none;
-  border-radius: 14px;
   cursor: pointer;
 }
-.bouton:active { transform: scale(0.98); }
+.bouton:hover { background: var(--accent); }
 
-#compteur { color: var(--texte-doux); margin: 18px 4px 8px; }
-
-/* Les cartes de profils : 1 colonne sur téléphone, plus sur grand écran */
-.liste { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+/* ---------- Les portraits ---------- */
+#compteur { color: var(--encre-douce); margin: 0 0 4px; font-style: italic; }
 
 .carte {
-  position: relative;
-  background: var(--carte);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: var(--ombre);
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 4px 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--filet);
 }
-.avatar { display: block; width: 100%; height: 200px; }
-.infos { padding: 14px 16px 18px; }
-.infos h3 { margin: 0; font-family: "Playfair Display", Georgia, serif; font-size: 1.3rem; }
-.infos p { margin: 6px 0; }
-.ville { color: var(--texte-doux); font-size: 0.95rem; }
-
-.tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
-.tags span {
-  background: var(--rose-clair);
-  color: #a04a62;
-  padding: 3px 12px;
-  border-radius: 999px;
-  font-size: 0.85rem;
+.initiale {
+  grid-row: span 2;
+  font-family: var(--titre);
+  font-size: 3.4rem;
+  line-height: 0.9;
+  color: var(--accent);
+  text-align: center;
 }
+.rubrique { color: var(--encre-douce); margin: 0; }
+.infos h3 { font-family: var(--titre); font-weight: 600; font-size: 1.45rem; margin: 2px 0 6px; }
+.citation { margin: 0; font-style: italic; }
 
-.coeur {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 44px;
-  height: 44px;
+.retenir {
+  grid-column: 2;
+  justify-self: start;
+  margin-top: 10px;
+  min-height: 44px;
+  padding: 0 2px;
+  font-family: var(--etiquette);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--encre);
+  background: none;
   border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  font-size: 1.3rem;
+  border-bottom: 1px solid var(--encre);
   cursor: pointer;
-  box-shadow: var(--ombre);
 }
+.retenir.actif { color: var(--accent); border-color: var(--accent); }
 
-.vide { text-align: center; color: var(--texte-doux); padding: 30px 10px; grid-column: 1 / -1; }
+.vide { color: var(--encre-douce); font-style: italic; padding: 28px 0; margin: 0; }
+
+/* ---------- Le carnet (favoris) ---------- */
+.carnet ol { list-style: none; padding: 0; margin: 0 0 16px; }
+.carnet li { padding: 8px 0; border-bottom: 1px solid var(--filet); }
+.carnet li span { color: var(--encre-douce); font-size: 0.92rem; }
+.carnet .vide { padding: 0 0 12px; font-size: 0.95rem; }
+.carnet a { color: var(--accent); font-family: var(--etiquette); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }

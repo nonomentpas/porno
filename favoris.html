@@ -4,21 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Galerie – Favoris</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Newsreader:ital,wght@0,400;1,400&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
+    <p class="date" id="date"></p>
     <h1>Galerie</h1>
-    <p class="sous-titre">Ta liste de favoris</p>
+    <p class="sous-titre">La rubrique des rencontres, édition du dimanche</p>
     <nav>
-      <a href="index.html">🔍 Recherche</a>
-      <a href="favoris.html" class="actif">❤️ Favoris</a>
+      <a href="index.html">Recherche</a>
+      <a href="favoris.html" class="actif">Mes favoris</a>
     </nav>
   </header>
 
-  <main>
-    <section id="liste-favoris" class="liste"></section>
+  <main class="simple">
+    <section>
+      <p class="etiquette">Mes favoris</p>
+      <h2>Les portraits que vous avez retenus</h2>
+      <div id="liste-favoris"></div>
+    </section>
   </main>
 
   <script src="profils.js"></script>

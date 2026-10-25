@@ -4,45 +4,68 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Galerie – Recherche</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Newsreader:ital,wght@0,400;1,400&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
+    <p class="date" id="date"></p>
     <h1>Galerie</h1>
-    <p class="sous-titre">Trouve les profils qui te plaisent</p>
+    <p class="sous-titre">La rubrique des rencontres, édition du dimanche</p>
     <nav>
-      <a href="index.html" class="actif">🔍 Recherche</a>
-      <a href="favoris.html">❤️ Favoris</a>
+      <a href="index.html" class="actif">Recherche</a>
+      <a href="favoris.html">Mes favoris</a>
     </nav>
   </header>
 
-  <main>
-    <!-- Le formulaire : « onsubmit » lance la recherche quand on clique sur le bouton ou appuie sur Entrée -->
-    <form class="recherche" onsubmit="rechercher(); return false;">
-      <input id="recherche" type="search" placeholder="Ex. : Paris, sportive, Léa…">
-      <div class="filtres">
-        <select id="cheveux">
-          <option value="">Cheveux</option>
-          <option value="brune">Brune</option>
-          <option value="blonde">Blonde</option>
-          <option value="rousse">Rousse</option>
-          <option value="châtain">Châtain</option>
-        </select>
-        <select id="style">
-          <option value="">Style</option>
-          <option value="élégante">Élégante</option>
-          <option value="sportive">Sportive</option>
-          <option value="bohème">Bohème</option>
-        </select>
-      </div>
-      <button type="submit" class="bouton">Rechercher</button>
-    </form>
+  <main class="tableau">
+    <!-- Colonne 1 : la recherche -->
+    <aside>
+      <p class="etiquette">Votre demande</p>
+      <h2>Qui cherchez-vous&nbsp;?</h2>
+      <!-- « onsubmit » lance la recherche quand on clique sur le bouton ou appuie sur Entrée -->
+      <form class="recherche" onsubmit="rechercher(); return false;">
+        <label>Mots-clés
+          <input id="recherche" type="search" placeholder="Paris, sportive, Léa…">
+        </label>
+        <label>Cheveux
+          <select id="cheveux">
+            <option value="">Tous</option>
+            <option value="brune">Brune</option>
+            <option value="blonde">Blonde</option>
+            <option value="rousse">Rousse</option>
+            <option value="châtain">Châtain</option>
+          </select>
+        </label>
+        <label>Style
+          <select id="style">
+            <option value="">Tous</option>
+            <option value="élégante">Élégante</option>
+            <option value="sportive">Sportive</option>
+            <option value="bohème">Bohème</option>
+          </select>
+        </label>
+        <button type="submit" class="bouton">Rechercher</button>
+      </form>
+    </aside>
 
-    <p id="compteur"></p>
-    <section id="resultats" class="liste">
-      <p class="vide">Tape un mot ou choisis un filtre, puis clique sur « Rechercher » 🌸<br>(sans rien taper, tu vois tous les profils)</p>
+    <!-- Colonne 2 : les résultats -->
+    <section class="colonne-centrale">
+      <p class="etiquette">Les portraits</p>
+      <h2>Cette semaine dans nos colonnes</h2>
+      <p id="compteur"></p>
+      <div id="resultats">
+        <p class="vide">Remplissez votre demande, puis cliquez sur « Rechercher ». Sans rien remplir, vous verrez tous les portraits.</p>
+      </div>
     </section>
+
+    <!-- Colonne 3 : aperçu des favoris -->
+    <aside class="carnet">
+      <p class="etiquette">Mes favoris</p>
+      <h2>Retenues</h2>
+      <ol id="carnet-liste"></ol>
+      <a href="favoris.html">Voir tous les favoris →</a>
+    </aside>
   </main>
 
   <script src="profils.js"></script>
